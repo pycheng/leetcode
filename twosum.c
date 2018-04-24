@@ -6,6 +6,11 @@
  *  Because nums[0] + nums[1] = 2 + 7 = 9,
  *  return [0, 1].
  */
+#if 0
+    20180424 the time complexity of thie method is O(n^2).
+    Using the hash table can enhance the speed.
+#endif
+
 
 #include "stdio.h"
 #include "stdlib.h"
