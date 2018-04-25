@@ -20,12 +20,30 @@ int test_nums[3] = {2, 3, 4};
 int test_target = 6;
 int test_ret_size = 0;
 
-
 /**
  * Return an array of size *returnSize.
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {
+    int* rslt = malloc(sizeof(int)*2);
+    int v1 = 0;
+    *returnSize = 2;
+
+    rslt[0] = 1; rslt[1] = numbersSize;
+    while(rslt[0] < rslt[1]){
+        v1 = numbers[rslt[0]-1] + numbers[rslt[1]-1]-target;
+        if(v1 == 0){ 
+            break;
+        }else if(v1 > 0){
+            rslt[1]--;
+        }else{
+            rslt[0]++;
+        }
+    }
+    return rslt;
+}
+//O(n^2)
+int* twoSum_sol_ns2(int* numbers, int numbersSize, int target, int* returnSize) {
     int* rslt = malloc(sizeof(int)*2);
     *returnSize = 2;
     rslt[0] = 1; rslt[1] = 1;
@@ -46,11 +64,11 @@ int* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {
 }
 
 
-void main(){
+int main(){
     int* test;
     test=twoSum(test_nums, 4, test_target, &test_ret_size);
     printf("%d, %d\n", test[0], test[1]);
     free(test);
-    return;
+    return 0;
 }
 
