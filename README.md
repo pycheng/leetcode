@@ -3,3 +3,4 @@
 20180425 2_addtwonums.c -not finished, the answer overflowed. should be care ful about the int length 
 20180426 412_fizzbuzz.c - watch the char** malloc
 20180426 823_binary_tree_with_factors.c**  continue to fix timeout limit,   double to fix overflow problem  #Dynamic Programing 
+20180430 70_clibing_stairs.c dynamic programming in 10 mins, recursive in 5 mins
