@@ -32,7 +32,111 @@ struct TreeNode {
 // non recursive solution can be implemented in 
 // DFS with queue
 // BFS with stack
+struct _stack_entry{
+    void * ent;
+    struct _stack_entry * prv;
+    struct _stack_entry * nxt;
+};
+struct _stack{
+    struct _stack_entry * tail;
+    int cnt;
+};
+void _stackpush(struct _stack* s, void* in){
+    struct _stack_entry *tmp = malloc(sizeof(struct _stack_entry));
+    tmp->ent = in;
+    tmp->nxt = NULL;
+    tmp->prv = s->tail;
+    if(s->tail == NULL){
+        s->tail = tmp;
+    }else{
+        s->tail->nxt = tmp;
+        s->tail = tmp;
+    }
+    s->cnt ++;
+}
+void * _stackpop(struct _stack* s){
+    struct _stack_entry *tmp;
+    void* ret;
+    if(s->tail == NULL){
+        return NULL;
+    }
+    tmp = s->tail;
+    s->tail = s->tail->prv;
+    if(s->tail)
+        s->tail->nxt = NULL;
+    s->cnt --;
+    tmp->prv = NULL;
+    ret = tmp->ent;
+    free(tmp);
+    return ret;
+}
+int _stackempty(struct _stack *s){
+    return s->cnt;
+}
+struct _stack* _stackinit(){
+    struct _stack *my_stack = malloc(sizeof(struct _stack));
+    my_stack->tail = NULL;
+    my_stack->cnt = 0;
+    return my_stack;
+}
+void _stackdel(struct _stack* s){
+    struct _stack_entry *tmp;
+    if(s==NULL){ return;}
+    while(s->tail != NULL){
+        tmp = s->tail;
+        s->tail = s->tail->prv;
+        free(tmp->ent);
+        free(tmp);
+    }
+    free(s); 
+}
+struct tn{
+    struct TreeNode* n;
+    int d;
+};
 
+int maxDepth(struct TreeNode* root) {
+    int rslt = 0;
+    struct _stack *stk; 
+    struct tn *t;
+    int curr_dep;
+    struct TreeNode* curr_node;
+
+    if(root == NULL) return 0;
+
+    stk = _stackinit();
+   
+    t = malloc(sizeof(struct tn));
+    t->n = curr_node = root;
+    t->d = curr_dep = 1;
+    _stackpush(stk,t);
+
+    while(_stackempty(stk) != 0){
+       t = (struct tn*)_stackpop(stk);
+       rslt = (rslt > t->d)?rslt:t->d;
+       curr_node = t->n;
+       curr_dep  = t->d+1;
+       free(t);
+       
+       if(curr_node->left != NULL){
+           t = malloc(sizeof(struct tn));
+           t->n = curr_node->left;
+           t->d = curr_dep;
+           _stackpush(stk, t);
+       }
+
+       if(curr_node->right != NULL){
+           t = malloc(sizeof(struct tn));
+           t->n = curr_node->right;
+           t->d = curr_dep;
+           _stackpush(stk, t);
+       }
+    }
+    _stackdel(stk);
+    return rslt;
+}
+
+#if 0 //recursive version
 int maxDepth(struct TreeNode* root) {
     int left_depth = 0;
     int right_depth = 0;
@@ -48,7 +152,7 @@ int maxDepth(struct TreeNode* root) {
     //printf("%d\n", rslt);
     return rslt;
 }
-
+#endif
 void add_node(int l, int r, struct TreeNode *p){
     struct TreeNode *n;
     if(l>0){
