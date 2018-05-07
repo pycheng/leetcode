@@ -12,6 +12,10 @@ return its depth = 3
 null,null,6,0,null,-7,null,null,null,null,null,null,-4,null,1,null,
 null,-4
 #endif
+#ifdef __README__
+BFS with stack version: maxDepth
+recursive version: maxDepth_rec 
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -136,8 +140,8 @@ int maxDepth(struct TreeNode* root) {
     return rslt;
 }
 
-#if 0 //recursive version
-int maxDepth(struct TreeNode* root) {
+//recursive version
+int maxDepth_rec(struct TreeNode* root) {
     int left_depth = 0;
     int right_depth = 0;
     if(root == NULL) { return 0; }
@@ -152,7 +156,7 @@ int maxDepth(struct TreeNode* root) {
     //printf("%d\n", rslt);
     return rslt;
 }
-#endif
+
 void add_node(int l, int r, struct TreeNode *p){
     struct TreeNode *n;
     if(l>0){
