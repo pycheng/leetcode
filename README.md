@@ -6,3 +6,5 @@
 20180430 70_clibing_stairs.c dynamic programming in 10 mins, recursive in 5 mins
 20180430 822_card_flipping.c kind of brain storm... when you get the hint solve it in O(n)
 20180430 821_short_distance_to_a_chart.c simple but need think how to initialize rslt. **
+20180508 104_max_depth_of_btree.c recursive or stack/queue
+20180508 84_largest_rec_in_histogram.c use stack to track the max acending list of index. 
