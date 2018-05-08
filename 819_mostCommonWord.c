@@ -19,7 +19,7 @@ struct _n{
 };
 void h_insert(char *in, struct _n **h){
     int i;
-    int key;
+    int key=0;
     char *buf;
     struct _n *pos, *tmp;
     for(i=0; i<strlen(in); i++){
@@ -54,7 +54,7 @@ void h_insert(char *in, struct _n **h){
 }
 void h_del(char *in, struct _n **h){
     int i;
-    int key;
+    int key=0;
     char *buf;
     struct _n *pos;
     for(i=0; i<strlen(in); i++){
