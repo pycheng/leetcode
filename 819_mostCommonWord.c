@@ -52,7 +52,7 @@ void h_insert(char *in, struct _n **h){
         //printf("hi2[%d][%s]%d\n",key, pos->tok, pos->cnt);
     }
 }
-int h_del(char *in, struct _n **h){
+void h_del(char *in, struct _n **h){
     int i;
     int key;
     char *buf;
