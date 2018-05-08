@@ -146,10 +146,10 @@ int maxDepth_rec(struct TreeNode* root) {
     int right_depth = 0;
     if(root == NULL) { return 0; }
     if(root->left!=NULL){
-        left_depth += maxDepth(root->left);
+        left_depth = maxDepth(root->left);
     }
     if(root->right!=NULL){
-        right_depth += maxDepth(root->right);
+        right_depth = maxDepth(root->right);
     }
     int rslt = (left_depth > right_depth)?left_depth:right_depth;
     rslt ++;
