@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
 
+#if 0
+Time complexity O(n+m) Space complexity O(1)
+    1. search backward for seeing '#' before the deleted char
+    2. when meet string[idx]=='#' move idx to the next valid char --> nxt_nonhash
+    3. comparing S[s_idx] == T[t_idx] handle the corner case when idx < 0 
+#endif
+
+
 class Solution {
 public:
     int nxt_nonhash(string s, int idx){

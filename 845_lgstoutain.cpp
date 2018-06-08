@@ -2,8 +2,49 @@
 #include <vector>
 using namespace std;
 
+#if 0
+Time complexity O(N), Space complexity O(1)
+By definition of moutain, one moutain can only start when the previous end.
+    1. rising steps follow by falling steps
+    2. length > 3, yes or cannot satisfy 1.
+Using s and e to identify the start and end index
+compare the e-s+1 with the max_length
+
+Solution_haha is designed based on a complicated FSM.
+Time complexity O(N), Space complexity O(1)
+#endif
 
 class Solution {
+public:
+    int longestMountain(vector<int>& A) {
+        int s=0, e=0;
+        int max_len=0;
+
+        //search through every item
+        while(s<A.size()){
+            
+            //go through rising steps;
+            if(((s+1)<A.size()) && A[s]<A[s+1]){
+                e = s;
+                while(((e+1)<A.size()) && A[e]<A[e+1]) e++;
+                //go through failing steps;
+                if(((e+1)<A.size()) && A[e]>A[e+1]){
+                    //moutain must be made by rising following falling
+                    while(((e+1)<A.size()) && A[e]>A[e+1]) e++;
+                    //update max_len
+                    max_len = max(max_len, e-s+1);
+                }
+            }
+
+            //update s to find next moutain, moutain will not overlap
+            s = max(s+1, e);
+        }
+
+        return max_len;
+    }
+};
+
+class Solution_haha {
 public:
 	int findnxt_rising(vector<int> A, int v){
 		int i;
@@ -14,7 +55,7 @@ public:
 		}
 		return i;
 	}
-    int longestMountain(vector<int>& A) {
+    int longestMountain_haha(vector<int>& A) {
         bool rising = false;
         int  r_step = 0;
         int  f_step = 0;
@@ -77,16 +118,16 @@ public:
 
 int main(){
 	Solution s;
-	vector<int> in = {0,1,2,3,4,2,1,0};      //8
+	vector<int> in  = {0,1,2,3,4,2,1,0};     //8
 	vector<int> in1 = {2,1,4,7,3,2,5};       //5
 	vector<int> in2 = {0,1,2,3,4,5,6,7,8,9}; //0
 	vector<int> in3 = {9,8,7,6,5,4,3,2,1,0}; //0
-	vector<int> in4 = {7,4,8}; //0
-	vector<int> in5 = {2,1,4,7,3,2,2,5};     
-	//cout <<s.longestMountain(in)<<"\n";
-	//cout <<s.longestMountain(in1)<<"\n";
-	//cout <<s.longestMountain(in2)<<"\n";
-	//cout <<s.longestMountain(in3)<<"\n";
-	//cout <<s.longestMountain(in4)<<"\n";
+	vector<int> in4 = {7,4,8};               //0
+	vector<int> in5 = {2,1,4,7,3,2,2,5};     //5 
+	cout <<s.longestMountain(in)<<"\n";
+	cout <<s.longestMountain(in1)<<"\n";
+	cout <<s.longestMountain(in2)<<"\n";
+	cout <<s.longestMountain(in3)<<"\n";
+	cout <<s.longestMountain(in4)<<"\n";
 	cout <<s.longestMountain(in5)<<"\n";
 }
