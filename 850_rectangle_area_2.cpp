@@ -3,8 +3,8 @@
 #include<map>
 #include<unordered_map>
 #include<math.h>
+#include<algorithm>
 using namespace std;
-#define DEBUG
 
 // <x1,y1,x2,y2> --> represent the rectangle
 //
@@ -27,9 +27,10 @@ using namespace std;
 //       vector<int>::iterator uniq_end_idx = unique(xval.begin(), xval.end());
 //       xval.erase(uniq_end_idx, xval.end());
 //
-// Time complexity:    
-// Space complexity:
-//
+// Time complexity: O(2n*m), n=rectangles.size(), m=no_x
+//      compute ares O(2*rectangles.size()*no_x) + sort O(no_x+2*no_y)
+// Space complexity: O(2n)
+//      rec_sorted_y O(rectangles.size()*2), map_xval2xidx O(2*no_xval) + acc_xidx/xval O(2*no_xval)  
 class Solution {
 public:
     int rectangleArea(vector<vector<int>>& rectangles) {
@@ -68,10 +69,10 @@ public:
         sort(rec_sorted_y.begin(), rec_sorted_y.end());
         
         long long area = 0, sum_x = 0, cur_y = 0;
-        //int mod = pow(10,9)+7;
-        int mod = 1000000000+7;
+        int mod = pow(10,9)+7;
         for(auto i:rec_sorted_y){
             long long y = i[0], x1 = i[1], x2 = i[2], sig=i[3];
+            //leecode server take this as 
             area = (area+(y-cur_y)*sum_x) % mod;
 #ifdef DEBUG
 			cout << "--> (" << y << "," << x1 << "," << x2 <<"," << sig << ")\n";
