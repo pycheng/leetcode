@@ -1,4 +1,4 @@
-//#DP
+//#dp
 #if 0
 Given two sequences A, B, find out number of unique ways in sequence A, 
 to form a subsequence of A that is identical to the sequence B. 
