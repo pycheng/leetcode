@@ -23,21 +23,25 @@ using namespace std;
 class Solution {
 public:
     int numSquares(int n) {
-       vector<int> dp(n, INT_MAX);
-
-
+        vector<int> dp(n+1, INT_MAX); //FIXME watchout the array size
+        dp[0] = 0;
+        for(int i = 1; i <= n; i++){
+            dp[i] = dp[i-1]+1;
+            for(int j = 2; pow(j,2) <= i; j++){ //FIXME watchout the <= i
+                //cout << "comparing dp: <" << i <<">, <" << pow(j,2) << ">";
+                dp[i] = min(dp[i], dp[i-pow(j,2)]+1);
+                //cout << "result: "<< dp[i] << "\n";
+            }
+        }
+        return dp[n];
     }
 
 };
 
 
 int main(){
-    int t = 49;
     Solution s;
-    cout << s.numSquares(t)<< "\n";
-    //cout << s.le_sqrt(146) << "\n";
-    //cout << s.le_sqrt(1) << "\n";
-    //cout << s.le_sqrt(2) << "\n";
-    //cout << s.le_sqrt(9) << "\n";
+    cout << s.numSquares(12)<< "\n";
+    //cout << s.numSquares(49)<< "\n";
 }
 
