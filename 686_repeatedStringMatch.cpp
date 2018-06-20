@@ -1,20 +1,21 @@
 //#string, #gps
 //sting::npos
 #include <iostream>
-#include <string>
+#include <math.h>
 using namespace std;
 
 class Solution {
     public:
         int repeatedStringMatch(string A, string B) {
-            string as;
-            int i;
-            for(i=0; i<B.size()/A.size()+3; i++){
-                as+=A;
-                cout << as <<","<<i<<","<<B.size()<< "\n";
-                if(as.find(B)!=string::npos) return i+1;
-            }
-            return -1;
+	        string t="";
+	        int min_cpy = ceil((double) B.size()/A.size());
+	        for(int i=0; i<min_cpy*2; i++){
+	        	t += A;
+	        	if(i >= min_cpy-1){
+	        		if(string::npos != t.find(B)) return i+1;
+	        	}
+	        }
+	        return -1;
         }
 };
 

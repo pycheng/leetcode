@@ -28,10 +28,10 @@ class Solution {
 int main(){
     Solution sol;
     bool rslt;
-    vector<int> t = {23,2,4,6,7};
+    vector<int> t = {23,2,4,6,7}; //6 true
     vector<int> t1 = {0,1,0}; //0  false --> subarray size must > 2 
     vector<int> t2 = {0,0};   //0  true  --> solved by 0 at num[-1]
-    vector<int> t2 = {0};     //0  false 
+    vector<int> t3 = {0};     //0  false 
     rslt = sol.checkSubarraySum(t,1);
     cout << rslt <<true;
     return 0;

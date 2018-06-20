@@ -1,5 +1,5 @@
 //#btree, #gps
-//waht out the [] tree case
+//watch out the [] tree case
 #include <iostream>
 #include <vector>
 using namespace std;
