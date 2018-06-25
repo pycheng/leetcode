@@ -24,7 +24,7 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
 		if(nums.size() == 0) return -1;
-		unsigned long long buff = 0;
+		unsigned int buff = 0;
 		for(auto i: nums){
 			buff^=i;
 		}        
@@ -33,6 +33,6 @@ public:
 };
 int main(){
 	Solution s;
-	vector<int> t = {4,1,2,1,2};
+	vector<int> t = {4,1,2,1,2,0,0};
 	cout << s.singleNumber(t); //4
 }
