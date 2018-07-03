@@ -18,9 +18,13 @@ You can assume each player plays to maximize his score.
 
 //draw the game as a binary tree
 //each leve represent different player
-
+//Recursion: 
+//  time complexity O(2^n) 
+//  space complexity O(n) --> n is the tree height
 //DP thinking: (l,r) pair could be query multiple times
 //use hashmap to store the l*nums.size()+r
+//  time complexity O(n^2) --> n*n keys
+//  space complexity O(n^2) + O(n) --> hash size + recursion
 
 class Solution {
 public:
@@ -78,7 +82,7 @@ public:
 #endif
 int main(){
     vector<int> t = {1,5,2};
-    Solution s;
+    Solution1 s;
     cout << s.PredictTheWinner(t);
 }
 
