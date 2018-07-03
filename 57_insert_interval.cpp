@@ -86,5 +86,4 @@ int main(){
     s.insert(t, Interval(0,5));
 #endif
     for(auto i:t) cout << i.start << "," << i.end << "\n";
-
 }
